@@ -1,0 +1,84 @@
+#include <iostream>
+#define MAX_SIZE 100 // Define the maximum size of the stack
+
+using namespace std;
+
+// Define a stack structure
+struct Stack {
+    int arr[MAX_SIZE]; // Array to store stack elements
+    int top;           // Index of the top element
+
+    // Constructor to initialize the stack
+    Stack() {
+        top = -1;
+    }
+
+    // Function to push an element onto the stack
+    void push(int value) {
+        if (top == MAX_SIZE - 1) {
+            cout << "Stack Overflow! Cannot push " << value << endl;
+            return;
+        }
+        arr[++top] = value;
+        cout << "Pushed " << value << " onto the stack." << endl;
+    }
+
+    // Function to pop an element from the stack
+    int pop() {
+        if (top == -1) {
+            cout << "Stack Underflow! Cannot pop." << endl;
+            return -1;
+        }
+        int poppedValue = arr[top--];
+        cout << "Popped " << poppedValue << " from the stack." << endl;
+        return poppedValue;
+    }
+
+    // Function to display the stack
+    void display() {
+        if (top == -1) {
+            cout << "Stack is empty." << endl;
+            return;
+        }
+        cout << "Stack elements: ";
+        for (int i = 0; i <= top; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+// Main function to test the stack implementation
+int main() {
+    Stack stack; // Create a stack object
+    int choice, value;
+
+    while (true) {
+        cout << "\nStack Operations Menu:" << endl;
+        cout << "1. Push" << endl;
+        cout << "2. Pop" << endl;
+        cout << "3. Display" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter the value to push: ";
+                cin >> value;
+                stack.push(value);
+                break;
+            case 2:
+                stack.pop();
+                break;
+            case 3:
+                stack.display();
+                break;
+            case 4:
+                cout << "Exiting program." << endl;
+                return 0;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    }
+}
